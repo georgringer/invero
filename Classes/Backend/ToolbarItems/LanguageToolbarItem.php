@@ -15,6 +15,7 @@ use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendViewFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -52,6 +53,9 @@ class LanguageToolbarItem implements ToolbarItemInterface, RequestAwareToolbarIt
      */
     public function getItem(): string
     {
+        /** @var PageRenderer $pageRenderer */
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadJavaScriptModule('@georgringer/invero/tree-preferred-language.js');
         $view = $this->backendViewFactory->create($this->request, ['georgringer/invero']);
         return $view->render('ToolbarItems/ToolbarItem');
     }

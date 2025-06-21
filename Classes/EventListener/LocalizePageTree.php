@@ -9,6 +9,8 @@ use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
+use TYPO3\CMS\Core\Information\Typo3Information;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 #[AsEventListener()]
@@ -22,16 +24,18 @@ class LocalizePageTree
             return;
         }
 
+        $typo3Version = new Typo3Version();
+
         $items = $event->getItems();
         foreach ($items as $key => $element) {
-            if ($element['recordType'] === 'pages') {
+            if ($element['recordType'] === 'pages' || $typo3Version->getMajorVersion() === 12) {
                 $label = $this->getPossibleTranslation((int)$items[$key]['identifier'], $preferredLanguageId);
                 if ($label) {
-                    $items[$key]['labels'][] = new Label(
-                        label: $items[$key]['name'],
-                        color: '#6daae0',
-                        priority: 100
-                    );
+//                    $items[$key]['labels'][] = new Label(
+//                        label: $items[$key]['name'],
+//                        color: '#6daae0',
+//                        priority: 100
+//                    );
 
                     $labelRendering = $this->getLabelRendering($preferredLanguageId);
                     if ($labelRendering) {

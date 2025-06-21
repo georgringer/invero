@@ -6,3 +6,8 @@ services:
 
   GeorgRinger\Invero\:
     resource: '../Classes/*'
+
+  GeorgRinger\Invero\EventListener\LocalizePageTree:
+    tags:
+      - name: event.listener
+        event: TYPO3\CMS\Backend\Controller\Event\AfterPageTreeItemsPreparedEvent
