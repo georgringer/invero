@@ -1,6 +1,6 @@
 <html xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:asset.module identifier="@georgringer/invero/toggle.js"/>
+<f:asset.module identifier="@georgringer/invero/tree-preferred-language.js"/>
 
 <p class="dropdown-headline">Languages</p>
 
@@ -10,7 +10,7 @@
         <ul class="dropdown-list">
             <f:for each="{languages}" as="language">
                 <li>
-                    <a href="#" class="dropdown-item dropdown-item-title t3js-language-switch"
+                    <a href="#" class="dropdown-item dropdown-item-title t3js-language-switch {f:if(condition:'{language.value} == {selected}',then:'active')}"
                         data-language="{language.value}">
                         <span class="dropdown-item-columns">
                             <span class="dropdown-item-column dropdown-item-column-icon">

@@ -72,6 +72,7 @@ class LanguageToolbarItem implements ToolbarItemInterface, RequestAwareToolbarIt
         $view = $this->backendViewFactory->create($this->request, ['georgringer/invero']);
         $view->assignMultiple([
             'languages' => $this->populateAvailableSiteLanguages(),
+            'selected' => $this->getPreferredLanguageId(),
         ]);
         return $view->render('ToolbarItems/DropDown');
     }
@@ -161,6 +162,11 @@ class LanguageToolbarItem implements ToolbarItemInterface, RequestAwareToolbarIt
         $result['md5sum'] = $identifier;
 
         return $result;
+    }
+
+    private function getPreferredLanguageId(): int
+    {
+        return (int)$this->getBackendUser()->user['tx_invero_tree_language'];
     }
 
     protected function getBackendUser(): BackendUserAuthentication
