@@ -1,0 +1,33 @@
+<html xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:asset.module identifier="@georgringer/invero/toggle.js"/>
+
+<p class="dropdown-headline">Languages</p>
+
+<p class="dropdown-header">Headline</p>
+<f:if condition="{languages}">
+    <f:then>
+        <ul class="dropdown-list">
+            <f:for each="{languages}" as="language">
+                <li>
+                    <a href="#" class="dropdown-item dropdown-item-title t3js-language-switch"
+                        data-language="{language.value}">
+                        <span class="dropdown-item-columns">
+                            <span class="dropdown-item-column dropdown-item-column-icon">
+                                <core:icon identifier="{language.icon}"/>
+                            </span>
+                            <span class="dropdown-item-column dropdown-item-column-title">
+                                {language.label}
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </f:for>
+        </ul>
+    </f:then>
+    <f:else>
+        <p class="dropdown-item-text"><f:translate key="LLL:EXT:opendocs/Resources/Private/Language/locallang.xlf:toolbarItems.openDocuments.emptyList" /></p>
+    </f:else>
+</f:if>
+
+</html>

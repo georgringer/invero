@@ -1,0 +1,2 @@
+# cat=module/1; type=string; label=Label rendering
+labelRendering = 5=%s [🇦🇹],6=%s [🇫🇷]
