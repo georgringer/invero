@@ -8,7 +8,6 @@ namespace GeorgRinger\Invero\Backend\ToolbarItems;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use TYPO3\CMS\Backend\Domain\Model\Element\ImmediateActionElement;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Toolbar\RequestAwareToolbarItemInterface;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
@@ -16,10 +15,8 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendViewFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Opendocs\Service\OpenDocumentService;
 
 
 #[Autoconfigure(public: true)]
@@ -45,7 +42,7 @@ class LanguageToolbarItem implements ToolbarItemInterface, RequestAwareToolbarIt
     public function checkAccess(): bool
     {
         return true;
-        return !(bool)($this->getBackendUser()->getTSConfig()['backendToolbarItem.']['tx_opendocs.']['disabled'] ?? false);
+        return !(bool)($this->getBackendUser()->getTSConfig()['backendToolbarItem.']['tx_invero.']['language']['disabled'] ?? false);
     }
 
     /**

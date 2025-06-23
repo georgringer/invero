@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dependencies' => ['backend'],
+    'dependencies' => ['backend', 'core'],
     'imports' => [
         '@georgringer/invero/' => 'EXT:invero/Resources/Public/JavaScript/',
     ],
