@@ -7,6 +7,9 @@ services:
   GeorgRinger\Invero\:
     resource: '../Classes/*'
 
+  GeorgRinger\Invero\Backend\RecordGroup:
+    public: true
+
   GeorgRinger\Invero\EventListener\LocalizePageTree:
     tags:
       - name: event.listener

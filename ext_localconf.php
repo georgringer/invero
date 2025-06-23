@@ -9,3 +9,14 @@ if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() === 12) 
         'className' => \GeorgRinger\Invero\Xclass\XclassedPageTreeRepository::class,
     ];
 }
+
+// optgroup
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\RecordList\DatabaseRecordList::class] = [
+    'className' => \GeorgRinger\Invero\Xclass\XclassedDatabaseRecordList::class,
+];
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Template\Components\Menu\Menu::class] = [
+    'className' => \GeorgRinger\Invero\Xclass\XclassedMenu::class
+];
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Controller\RecordListController::class] = [
+    'className' => \GeorgRinger\Invero\Xclass\XclassedRecordListController::class
+];
