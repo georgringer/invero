@@ -20,3 +20,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Template\Compon
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Controller\RecordListController::class] = [
     'className' => \GeorgRinger\Invero\Xclass\XclassedRecordListController::class
 ];
+
+// password meter
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1750713070] = [
+    'nodeName' => 'password',
+    'priority' => 40,
+    'class' => \GeorgRinger\Invero\Backend\Form\Element\PasswordElement::class,
+];
