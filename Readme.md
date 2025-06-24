@@ -30,6 +30,7 @@ Avoid endless scrolling to find the table with the records you and your editors 
 Just select the table name in the toolbar and you are don!
 
 ![record-selector.png](Resources/Public/Screenshots/record-selector.png)
+[record-selector.mp4](Resources/Public/Screenshots/record-selector.mp4)
 
 ### Translated page tree
 
@@ -42,3 +43,4 @@ See the page tree in any translation.
 Finally you see which password requirements are met - before submitting the password and getting an error after saving.
 
 ![password-meter.png](Resources/Public/Screenshots/password-meter.png)
+[password.mp4](Resources/Public/Screenshots/password.mp4)
