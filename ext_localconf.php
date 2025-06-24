@@ -11,9 +11,15 @@ if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() === 12) 
 }
 
 // optgroup
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\RecordList\DatabaseRecordList::class] = [
-    'className' => \GeorgRinger\Invero\Xclass\XclassedDatabaseRecordList::class,
-];
+if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() === 12) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\RecordList\DatabaseRecordList::class] = [
+        'className' => \GeorgRinger\Invero\Xclass\XclassedDatabaseRecordList12::class,
+    ];
+} else {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\RecordList\DatabaseRecordList::class] = [
+        'className' => \GeorgRinger\Invero\Xclass\XclassedDatabaseRecordList::class,
+    ];
+}
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Template\Components\Menu\Menu::class] = [
     'className' => \GeorgRinger\Invero\Xclass\XclassedMenu::class
 ];

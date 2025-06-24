@@ -175,7 +175,7 @@ class XclassedRecordListController extends RecordListController
                 $menuOptgroupItem = $menu->makeMenuOptgroupItem()
                     ->setTitle($control['title']);
 
-                foreach ($control['items'] as $table => $item) {
+                foreach ($control['items'] ?? [] as $table => $item) {
                     $menuItem = $menu->makeMenuItem()
                         ->setTitle($item['label'])
                         ->setHref((string)$this->uriBuilder->buildUriFromRoute('web_list', [

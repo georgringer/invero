@@ -27,6 +27,7 @@ use TYPO3\CMS\Core\Schema\TcaSchemaFactory;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class RecordGroup
 {
@@ -53,12 +54,17 @@ class RecordGroup
                 'system' => $lang->sL('LLL:EXT:core/Resources/Private/Language/locallang_misc.xlf:system_records'),
             ];
             $groupedLinksOnTop = [];
-            foreach ($tableList as $table => $v) {
+            foreach ($tableList as $table) {
 
+                $v = $GLOBALS['TCA'][$table] ?? null;
+                if (!$v) {
+                    continue;
+                }
                 $nameParts = explode('_', $table);
                 $groupName = $v['ctrl']['groupName'] ?? null;
                 $title = (string) ($v['ctrl']['title'] ?? '');
                 if (!isset($iconFile[$groupName]) || $nameParts[0] === 'tx' || $nameParts[0] === 'tt') {
+
                     $groupName = $groupName ?? $nameParts[1] ?? null;
                     // Try to extract extension name
                     if ($groupName) {
@@ -102,8 +108,13 @@ class RecordGroup
                         $groupName = 'system';
                     }
                 }
+
                 $rows[$groupName]['title'] = $rows[$groupName]['title'] ?? $groupTitles[$groupName] ?? $nameParts[1] ?? $title;
                 $rows[$groupName]['icon'] = $rows[$groupName]['icon'] ?? $iconFile[$groupName] ?? $iconFile['system'] ?? '';
+                $rows[$groupName]['items'][$table] = [
+                    'icon' => $this->iconFactory->getIconForRecord($table, [], Icon::SIZE_SMALL),
+                    'label' => $lang->sL($v['ctrl']['title'] ?? '')
+                ];
             }
 
         } else {
