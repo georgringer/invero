@@ -23,13 +23,12 @@ class LocalizePageTree
         if ($preferredLanguageId === 0) {
             return;
         }
-
         $typo3Version = new Typo3Version();
 
         $items = $event->getItems();
         foreach ($items as $key => $element) {
             if ($element['recordType'] === 'pages' || $typo3Version->getMajorVersion() === 12) {
-                $label = $this->getPossibleTranslation((int)$items[$key]['identifier'], $preferredLanguageId);
+                $label = $this->getPossibleTranslation((int) $items[$key]['identifier'], $preferredLanguageId);
                 if ($label) {
 //                    $items[$key]['labels'][] = new Label(
 //                        label: $items[$key]['name'],
@@ -40,6 +39,8 @@ class LocalizePageTree
                     $labelRendering = $this->getLabelRendering($preferredLanguageId);
                     if ($labelRendering) {
                         $items[$key]['name'] = sprintf($labelRendering, $label);
+                    } else {
+                        $items[$key]['name'] = $label;
                     }
 
                 }
@@ -69,7 +70,7 @@ class LocalizePageTree
             $configuration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('invero', 'labelRendering');
             foreach (GeneralUtility::trimExplode(',', $configuration, true) as $item) {
                 $line = GeneralUtility::trimExplode('=', $item, true, 2);
-                if ((int)$line[0] === $language) {
+                if ((int) $line[0] === $language) {
                     return $line[1];
                 }
             }
@@ -81,6 +82,6 @@ class LocalizePageTree
 
     private function getPreferredLanguageId(): int
     {
-        return (int)$GLOBALS['BE_USER']->user['tx_invero_tree_language'];
+        return (int) $GLOBALS['BE_USER']->user['tx_invero_tree_language'];
     }
 }
