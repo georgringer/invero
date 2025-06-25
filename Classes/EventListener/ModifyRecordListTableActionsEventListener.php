@@ -6,13 +6,13 @@ namespace GeorgRinger\Invero\EventListener;
 
 use TYPO3\CMS\Backend\RecordList\Event\ModifyRecordListTableActionsEvent;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
-use TYPO3\CMS\Core\Attribute\AsEventListener;
+use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-#[AsEventListener()]
 class ModifyRecordListTableActionsEventListener {
 
     public function __invoke(ModifyRecordListTableActionsEvent $event)
@@ -34,6 +34,7 @@ class ModifyRecordListTableActionsEventListener {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadJavaScriptModule('@georgringer/invero/BulkEdit.js');
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+        $size = (new Typo3Version())->getMajorVersion() === 12 ? Icon::SIZE_SMALL : IconSize::SMALL;
         $action = '<button
                         type="button"
                         title="bulkedit"
@@ -41,7 +42,7 @@ class ModifyRecordListTableActionsEventListener {
                         data-multi-record-selection-action="editBulk"
                         data-multi-record-selection-action-config="' . GeneralUtility::jsonEncodeForHtmlAttribute(array_merge($editActionConfiguration, ['columnsOnly' => $columns,'url' => (string)$uriBuilder->buildUriFromRoute('record_edit_bulk')])) . '"
                     >
-                        ' . $iconFactory->getIcon('actions-document-open', IconSize::SMALL)->render() . '
+                        ' . $iconFactory->getIcon('actions-document-open', $size)->render() . '
                         ' . htmlspecialchars('bulk me') . '
                     </button>';
         $event->setAction($action, 'bulk');

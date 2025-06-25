@@ -14,3 +14,8 @@ services:
     tags:
       - name: event.listener
         event: TYPO3\CMS\Backend\Controller\Event\AfterPageTreeItemsPreparedEvent
+
+  GeorgRinger\Invero\EventListener\ModifyRecordListTableActionsEventListener:
+    tags:
+      - name: event.listener
+        event: TYPO3\CMS\Backend\RecordList\Event\ModifyRecordListTableActionsEvent
