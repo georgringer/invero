@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\Invero\Controller;
 
+use GeorgRinger\Invero\Configuration;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Attribute\AsController;
@@ -30,6 +31,7 @@ class PasswordMeterController
 {
     public function verifyAction(ServerRequestInterface $request): ResponseInterface
     {
+        $this->checkIfEnabled();
         $password = $request->getParsedBody()['password'] ?? '';
         $validators = $request->getParsedBody()['list'] ?? [];
 
@@ -57,6 +59,14 @@ class PasswordMeterController
 
         // todo what if mismatch in count of $errors + $foundErrors
         return new JsonResponse(['success' => false, 'errors' => $foundErrors, 'pwd' => $password]);
+    }
+
+    protected function checkIfEnabled(): void
+    {
+        $configuration = new Configuration();
+        if (!$configuration->isPasswordMeter()) {
+            throw new \RuntimeException('Password Meter is disabled');
+        }
     }
 
 

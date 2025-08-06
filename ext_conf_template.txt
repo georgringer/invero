@@ -1,2 +1,15 @@
-# cat=module/1; type=string; label=Label rendering
+# cat=feature/1; type=boolean; label=Record list selection
+recordListSelection = 1
+
+# cat=feature/2; type=boolean; label=Page tree with language overlay
+l10nTree = 1
+
+# cat=feature/3; type=boolean; label=Password meter
+passwordMeter = 1
+
+# cat=feature/4; type=boolean; label=Bulk editing
+bulkEditing = 1
+
+
+# cat=configuration/1; type=string; label=Label rendering
 labelRendering = 5=%s [🇦🇹],6=%s [🇫🇷]

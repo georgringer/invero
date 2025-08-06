@@ -9,7 +9,7 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 class PasswordElement extends \TYPO3\CMS\Backend\Form\Element\PasswordElement
 {
 
-    public function render()
+    public function render(): array
     {
         $resultArray = parent::render();
         unset($resultArray['javaScriptModules'][0]);
