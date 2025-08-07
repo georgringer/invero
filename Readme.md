@@ -29,8 +29,6 @@ Your support helps keep this project alive and maintained for future TYPO3 versi
 
 ### Bulk editing
 
-Bulk Editing
-
 Easily update multiple records at once. For example, hide several items or assign categories in just a few clicks.
 
 <details> <summary>Watch video demo</summary>
