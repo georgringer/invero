@@ -58,6 +58,7 @@ Great for editors working in translated environments.
 
 <details>
 <summary>Click to show video</summary>
+  
 https://github.com/user-attachments/assets/bbf84c43-4c6d-42cd-8ee8-5c2591e81428
 </details>
 
