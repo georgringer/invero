@@ -42,6 +42,7 @@ Quickly jump to any record table directly from the backend toolbar — no more e
 
 <details>
 <summary>Click to show screenshot</summary>
+  
 ![record-selector.png](Resources/Public/Screenshots/record-selector.png)
 </details>
 
