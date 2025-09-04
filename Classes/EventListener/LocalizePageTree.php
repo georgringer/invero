@@ -27,7 +27,7 @@ class LocalizePageTree
 
         $items = $event->getItems();
         foreach ($items as $key => $element) {
-            if ($element['recordType'] === 'pages' || $typo3Version->getMajorVersion() === 12) {
+            if ($typo3Version->getMajorVersion() === 12 || $element['recordType'] === 'pages') {
                 $label = $this->getPossibleTranslation((int) $items[$key]['identifier'], $preferredLanguageId);
                 if ($label) {
 //                    $items[$key]['labels'][] = new Label(
