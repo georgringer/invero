@@ -82,6 +82,6 @@ class LocalizePageTree
 
     private function getPreferredLanguageId(): int
     {
-        return (int) $GLOBALS['BE_USER']->user['tx_invero_tree_language'];
+        return (int) ($GLOBALS['BE_USER']->user['tx_invero_tree_language'] ?? 0);
     }
 }

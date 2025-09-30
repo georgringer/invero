@@ -167,7 +167,7 @@ class LanguageToolbarItem implements ToolbarItemInterface, RequestAwareToolbarIt
 
     private function getPreferredLanguageId(): int
     {
-        return (int)$this->getBackendUser()->user['tx_invero_tree_language'];
+        return (int)($this->getBackendUser()->user['tx_invero_tree_language'] ?? 0);
     }
 
     protected function getBackendUser(): BackendUserAuthentication
