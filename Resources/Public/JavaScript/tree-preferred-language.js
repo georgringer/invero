@@ -11,17 +11,16 @@ document.querySelectorAll('.t3js-language-switch').forEach(function (link) {
 
     // Add 'active' class to the clicked link
     link.classList.add('active');
-    top.document.dispatchEvent(new CustomEvent('typo3:pagetree:refresh'));
 
+    // refresh the tree only after the language has been stored, otherwise the tree may be
+    // reloaded with the previous language (and the switch seems to need a second click)
     new AjaxRequest(TYPO3.settings.ajaxUrls.invero_tree_language)
       .withQueryArguments({
         language: link.dataset.language,
       })
       .get()
-      .then(async function (response) {
-        const resolved = await response.resolve();
-
-        console.log(resolved);
+      .then(function () {
+        top.document.dispatchEvent(new CustomEvent('typo3:pagetree:refresh'));
       });
   });
 });
