@@ -137,7 +137,7 @@ class XclassedRecordListController extends RecordListController
         if ($pageinfo) {
             $view->getDocHeaderComponent()->setMetaInformation($pageinfo);
         }
-        $this->getDocHeaderButtons($view, $clipboard, $request, $this->table, $dbList->listURL(), [], $pageinfo ? $dbList->getTablesOnPage() : []);
+        $this->getDocHeaderButtons($view, $clipboard, $request, $dbList, $pageinfo ? $dbList->getTablesOnPage() : []);
         $view->assignMultiple([
             'pageId' => $this->id,
             'pageTitle' => $title,
@@ -153,9 +153,9 @@ class XclassedRecordListController extends RecordListController
         return $view->renderResponse('RecordList');
     }
 
-    protected function getDocHeaderButtons(ModuleTemplate $view, Clipboard $clipboard, ServerRequestInterface $request, string $table, string $listUrl, array $moduleSettings, array $tablesOnPage = []): void
+    protected function getDocHeaderButtons(ModuleTemplate $view, Clipboard $clipboard, ServerRequestInterface $request, DatabaseRecordList $dbList, array $tablesOnPage = []): void
     {
-        parent::getDocHeaderButtons($view, $clipboard, $request, $table, $listUrl, $moduleSettings);
+        parent::getDocHeaderButtons($view, $clipboard, $request, $dbList);
 
         if ($tablesOnPage) {
             $recordGroup = GeneralUtility::makeInstance(RecordGroup::class);
